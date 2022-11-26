@@ -5,7 +5,7 @@
 package view;
 
 import controller.ActionsHandler;
-import controller.Listener;
+import controller.InvoiceSelectionListener;
 import model.InvoiceLine;
 import model.InvoicesTable;
 
@@ -21,7 +21,7 @@ public class MainGUI extends JFrame {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     // Generated using JFormDesigner Evaluation license - asboifsu
-    private final Listener selectionListener = new Listener(this);
+    private final InvoiceSelectionListener invoiceSelectionListener = new InvoiceSelectionListener(this);
     private ArrayList<InvoiceLine> selectedInvoiceRecords;
     private InvoicesTable invoicesTable;
     private final ActionsHandler actionsHandler;
@@ -88,7 +88,7 @@ public class MainGUI extends JFrame {
 
         table1 = new JTable();
         table1.setRowSelectionAllowed(true);
-        table1.getSelectionModel().addListSelectionListener(selectionListener);
+        table1.getSelectionModel().addListSelectionListener(invoiceSelectionListener);
 
         table2 = new JTable();
         table2.setRowSelectionAllowed(true);

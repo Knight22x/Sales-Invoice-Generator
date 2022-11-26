@@ -10,11 +10,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.util.ArrayList;
 
-public class Listener implements ListSelectionListener {
+public class InvoiceSelectionListener implements ListSelectionListener {
 
     private final MainGUI frameObject;
 
-    public Listener(MainGUI frameObject) {
+    public InvoiceSelectionListener(MainGUI frameObject) {
         this.frameObject = frameObject;
     }
 
