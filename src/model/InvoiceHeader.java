@@ -49,6 +49,6 @@ public class InvoiceHeader {
 
     @Override
     public String toString() {
-        return invoiceNum + "," + MainGUI.simpleDateFormat.format(invoiceDate) + "," + customerName;
+        return invoiceNum + "," + Constants.DATE_FORMAT.format(invoiceDate) + "," + customerName;
     }
 }

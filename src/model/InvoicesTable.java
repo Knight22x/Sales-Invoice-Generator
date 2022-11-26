@@ -37,7 +37,7 @@ public class InvoicesTable extends AbstractTableModel {
     public Object getValueAt(int row, int col) {
         return switch (col) {
             case 0 -> invoices.get(row).getInvoiceNum();
-            case 1 -> MainGUI.simpleDateFormat.format(invoices.get(row).getInvoiceDate());
+            case 1 -> Constants.DATE_FORMAT.format(invoices.get(row).getInvoiceDate());
             case 2 -> invoices.get(row).getCustomerName();
             case 3 -> invoices.get(row).getTotal();
             default -> "Empty";

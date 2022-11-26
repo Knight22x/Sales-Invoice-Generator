@@ -12,7 +12,6 @@ import model.InvoicesTable;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -20,8 +19,6 @@ import java.util.ArrayList;
  */
 public class MainGUI extends JFrame {
 
-    public static String pattern = "dd-MM-yyyy";
-    public static SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
     private final Listener selectionListener = new Listener(this);
     private ArrayList<InvoiceLine> selectedInvoiceRecords;
     private InvoicesTable invoicesTable;
