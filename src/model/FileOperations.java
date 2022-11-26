@@ -18,6 +18,20 @@ import java.util.stream.Collectors;
 
 public final class FileOperations {
 
+    public static void main(String[] args) {
+        ArrayList<InvoiceHeader> invoices = FileOperations.readFiles("assets/invoices.csv", "assets/invoice_records.csv");
+
+        for (InvoiceHeader invoice : invoices) {
+            System.out.println(invoice.getInvoiceNum());
+            System.out.println("{");
+            for (InvoiceLine record : invoice.getInvoiceRecords()) {
+                System.out.println(record.getItemName() + ", " + record.getItemPrice() + ", " + record.getCount());
+            }
+            System.out.println("}");
+            System.out.println();
+        }
+    }
+
     public static ArrayList<InvoiceHeader> readFiles(String invoicesPath, String recordsPath) {
         ArrayList<InvoiceHeader> invoices = new ArrayList<>();
 
