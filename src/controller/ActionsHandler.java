@@ -170,27 +170,34 @@ public class ActionsHandler implements ActionListener {
     private void okNewRecord() {
         invoiceRecordView.setVisible(false);
 
-        String ItemName = invoiceRecordView.getItemNameField().getText();
-        int itemCount = Integer.parseInt(invoiceRecordView.getItemCountField().getText());
-        double itemPrice = Double.parseDouble(invoiceRecordView.getItemPriceField().getText());
+        try {
+            String ItemName = invoiceRecordView.getItemNameField().getText();
+            int itemCount = Integer.parseInt(invoiceRecordView.getItemCountField().getText());
+            double itemPrice = Double.parseDouble(invoiceRecordView.getItemPriceField().getText());
 
-        int selectedInvoice = Math.max(0, frameObject.getTable1().getSelectedRow());
-        InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
+            int selectedInvoice = Math.max(0, frameObject.getTable1().getSelectedRow());
+            InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
 
-        InvoiceLine record = new InvoiceLine(ItemName, itemPrice, itemCount, invoice);
-        invoice.getInvoiceRecords().add(record);
-        frameObject.getInvoicesTable().fireTableDataChanged();
+            InvoiceLine record = new InvoiceLine(ItemName, itemPrice, itemCount, invoice);
+            invoice.getInvoiceRecords().add(record);
+            frameObject.getInvoicesTable().fireTableDataChanged();
 
-        ArrayList<InvoiceLine> invoiceRecords = invoice.getInvoiceRecords();
-        frameObject.setSelectedInvoiceRecords(invoiceRecords);
-        frameObject.getTable2().setModel(new InvoiceRecordsTable(invoiceRecords));
-        frameObject.getTextField3().setText(invoice.getCustomerName());
-        frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(invoice.getInvoiceDate()));
-        frameObject.getTextField1().setText(String.valueOf(invoice.getInvoiceNum()));
-        frameObject.getTextField4().setText(String.valueOf(invoice.getTotal()));
+            ArrayList<InvoiceLine> invoiceRecords = invoice.getInvoiceRecords();
+            frameObject.setSelectedInvoiceRecords(invoiceRecords);
+            frameObject.getTable2().setModel(new InvoiceRecordsTable(invoiceRecords));
+            frameObject.getTextField3().setText(invoice.getCustomerName());
+            frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(invoice.getInvoiceDate()));
+            frameObject.getTextField1().setText(String.valueOf(invoice.getInvoiceNum()));
+            frameObject.getTextField4().setText(String.valueOf(invoice.getTotal()));
 
-        invoiceRecordView.dispose();
-        invoiceRecordView = null;
+            invoiceRecordView.dispose();
+            invoiceRecordView = null;
+        } catch (NumberFormatException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.WARNING, "Please enter correct count and price.", e);
+            JOptionPane.showMessageDialog(null, "Please enter correct count and price.");
+
+            invoiceRecordView.setVisible(true);
+        }
     }
 
     private void cancelNewRecord() {
