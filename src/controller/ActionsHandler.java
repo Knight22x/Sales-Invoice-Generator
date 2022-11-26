@@ -61,6 +61,11 @@ public class ActionsHandler implements ActionListener {
     private void deleteInvoice() {
         int[] selectedRows = frameObject.getTable1().getSelectedRows();
 
+        if (selectedRows.length == 0) {
+            JOptionPane.showMessageDialog(null, "Please select an invoice first.");
+            return;
+        }
+
         int deletedRows = 0;
         for (int selectedRow : selectedRows) {
             frameObject.getInvoicesTable().getInvoices().remove(selectedRow - deletedRows);
