@@ -83,12 +83,24 @@ public class ActionsHandler implements ActionListener {
     }
 
     private void createRecord() {
+        int selectedInvoice = frameObject.getTable1().getSelectedRow();
+
+        if (selectedInvoice == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an invoice first.");
+            return;
+        }
+
         invoiceRecordView = new InvoiceRecordView(this);
         invoiceRecordView.setVisible(true);
     }
 
     private void deleteRecord() {
         int selectedInvoice = frameObject.getTable1().getSelectedRow();
+
+        if (selectedInvoice == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an invoice first.");
+            return;
+        }
 
         int[] selectedRows = frameObject.getTable2().getSelectedRows();
 
