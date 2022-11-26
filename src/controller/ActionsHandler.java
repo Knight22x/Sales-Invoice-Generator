@@ -19,7 +19,6 @@ public class ActionsHandler implements ActionListener {
     private final MainGUI frameObject;
     InvoiceRecordView invoiceRecordView;
     InvoiceView invoiceView;
-    private int selectedInvoice;
 
     public ActionsHandler(MainGUI frameObj) {
         frameObject = frameObj;
@@ -38,6 +37,8 @@ public class ActionsHandler implements ActionListener {
             case "Cancel New Invoice" -> cancelNewInvoice();
             case "OK New Record" -> okNewRecord();
             case "Cancel New Record" -> cancelNewRecord();
+            case "Save" -> saveInvoiceEdit();
+            case "Cancel" -> cancelInvoiceEdit();
             default -> {
             }
         }
@@ -173,13 +174,8 @@ public class ActionsHandler implements ActionListener {
         int itemCount = Integer.parseInt(invoiceRecordView.getItemCountField().getText());
         double itemPrice = Double.parseDouble(invoiceRecordView.getItemPriceField().getText());
 
-        InvoiceHeader invoice;
-        if (frameObject.getTable1().getSelectedRow() >= 0) {
-            selectedInvoice = frameObject.getTable1().getSelectedRow();
-            invoice = frameObject.getInvoicesTable().getInvoices().get(frameObject.getTable1().getSelectedRow());
-        } else {
-            invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
-        }
+        int selectedInvoice = frameObject.getTable1().getSelectedRow();
+        InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
 
         InvoiceLine record = new InvoiceLine(ItemName, itemPrice, itemCount, invoice);
         invoice.getInvoiceRecords().add(record);
@@ -189,7 +185,7 @@ public class ActionsHandler implements ActionListener {
         frameObject.setSelectedInvoiceRecords(invoiceRecords);
         frameObject.getTable2().setModel(new InvoiceRecordsTable(invoiceRecords));
         frameObject.getTextField3().setText(invoice.getCustomerName());
-        frameObject.getTextField2().setText(String.valueOf(invoice.getInvoiceDate()));
+        frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(invoice.getInvoiceDate()));
         frameObject.getTextField1().setText(String.valueOf(invoice.getInvoiceNum()));
         frameObject.getTextField4().setText(String.valueOf(invoice.getTotal()));
 
@@ -201,5 +197,42 @@ public class ActionsHandler implements ActionListener {
         invoiceRecordView.setVisible(false);
         invoiceRecordView.dispose();
         invoiceRecordView = null;
+    }
+
+    private void saveInvoiceEdit() {
+        int selectedInvoice = frameObject.getTable1().getSelectedRow();
+
+        if (selectedInvoice == -1) {
+            JOptionPane.showMessageDialog(null, "Please select an invoice first.");
+            return;
+        }
+
+        InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
+
+        try {
+            Date invoiceDate = Constants.DATE_FORMAT.parse(frameObject.getTextField2().getText());
+            String customerName = frameObject.getTextField3().getText();
+
+            invoice.setCustomerName(customerName);
+            invoice.setInvoiceDate(invoiceDate);
+
+            frameObject.getInvoicesTable().fireTableRowsUpdated(selectedInvoice, selectedInvoice);
+
+            JOptionPane.showMessageDialog(null, "Saved changes.");
+        } catch (ParseException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.WARNING, "Entered date format was incorrect. Please fix the date format to dd-MM-yyyy first.", e);
+            JOptionPane.showMessageDialog(null, "Entered date format was incorrect. Please fix the date format to dd-MM-yyyy first.");
+        }
+    }
+
+    private void cancelInvoiceEdit() {
+        int selectedInvoice = frameObject.getTable1().getSelectedRow();
+
+        if (selectedInvoice == -1) return;
+
+        InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
+
+        frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(invoice.getInvoiceDate()));
+        frameObject.getTextField3().setText(invoice.getCustomerName());
     }
 }

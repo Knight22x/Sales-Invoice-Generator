@@ -19,6 +19,8 @@ import java.util.ArrayList;
  */
 public class MainGUI extends JFrame {
 
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    // Generated using JFormDesigner Evaluation license - asboifsu
     private final Listener selectionListener = new Listener(this);
     private ArrayList<InvoiceLine> selectedInvoiceRecords;
     private InvoicesTable invoicesTable;
@@ -29,6 +31,7 @@ public class MainGUI extends JFrame {
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     public MainGUI() {
         actionsHandler = new ActionsHandler(this);
@@ -71,12 +74,9 @@ public class MainGUI extends JFrame {
     public void setInvoicesTable(InvoicesTable invoicesTable) {
         this.invoicesTable = invoicesTable;
     }
-    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - asboifsu
-        // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
         // Generated using JFormDesigner Evaluation license - asboifsu
         JMenuBar menuBar1 = new JMenuBar();
         JMenu menu1 = new JMenu();
@@ -156,6 +156,20 @@ public class MainGUI extends JFrame {
         button4.setForeground(Color.yellow);
         button4.setFont(button4.getFont().deriveFont(button4.getFont().getStyle() | Font.BOLD));
 
+        //---- button5 ----
+        JButton button5 = new JButton("Save");
+        button5.addActionListener(actionsHandler);
+        button5.setBackground(Color.black);
+        button5.setForeground(Color.yellow);
+        button5.setFont(button5.getFont().deriveFont(button5.getFont().getStyle() | Font.BOLD));
+
+        //---- button6 ----
+        JButton button6 = new JButton("Cancel");
+        button6.addActionListener(actionsHandler);
+        button6.setBackground(Color.black);
+        button6.setForeground(Color.yellow);
+        button6.setFont(button6.getFont().deriveFont(button6.getFont().getStyle() | Font.BOLD));
+
         //---- label1 ----
         JLabel label1 = new JLabel();
         label1.setText("Invoices Table");
@@ -194,10 +208,8 @@ public class MainGUI extends JFrame {
         textField1.setEditable(false);
 
         textField2 = new JTextField();
-        textField2.setEditable(false);
 
         textField3 = new JTextField();
-        textField3.setEditable(false);
 
         textField4 = new JTextField();
         textField4.setEditable(false);
@@ -241,7 +253,17 @@ public class MainGUI extends JFrame {
                                                                         .addComponent(textField4)
                                                                         .addGroup(contentPaneLayout.createSequentialGroup()
                                                                                 .addComponent(label7, GroupLayout.PREFERRED_SIZE, 356, GroupLayout.PREFERRED_SIZE)
-                                                                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                                                                .addGap(0, 0, Short.MAX_VALUE))))
+                                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                                .addComponent(button1)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(button5)
+                                                                .addGap(51, 51, 51)
+                                                                .addComponent(button6)
+                                                                .addGap(165, 165, 165)
+                                                                .addGroup(contentPaneLayout.createParallelGroup()
+                                                                        .addComponent(scrollPane2)
+                                                                        .addComponent(button2))))
                                                 .addGap(42, 42, 42))))
         );
         contentPaneLayout.setVerticalGroup(
@@ -252,7 +274,19 @@ public class MainGUI extends JFrame {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(label1)
                                 .addGap(9, 9, 9)
-                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addGroup(contentPaneLayout.createParallelGroup()
+                                                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(button1)
+                                                                .addComponent(button4)
+                                                                .addComponent(button3)
+                                                                .addComponent(button5)
+                                                                .addComponent(button6))
+                                                        .addComponent(button2))
+                                                .addContainerGap(16, Short.MAX_VALUE))
                                         .addGroup(contentPaneLayout.createSequentialGroup()
                                                 .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(label3)
@@ -272,16 +306,8 @@ public class MainGUI extends JFrame {
                                                 .addGap(7, 7, 7)
                                                 .addComponent(label2)
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(button1)
-                                                .addComponent(button4)
-                                                .addComponent(button3))
-                                        .addComponent(button2))
-                                .addContainerGap(16, Short.MAX_VALUE))
+                                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                .addContainerGap(52, Short.MAX_VALUE))))
         );
         pack();
         setLocationRelativeTo(getOwner());

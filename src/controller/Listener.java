@@ -1,5 +1,6 @@
 package controller;
 
+import model.Constants;
 import model.InvoiceHeader;
 import model.InvoiceLine;
 import model.InvoiceRecordsTable;
@@ -26,7 +27,7 @@ public class Listener implements ListSelectionListener {
             frameObject.setSelectedInvoiceRecords(selectedRecords);
             frameObject.getTable2().setModel(invoiceRecordsTable);
             frameObject.getTextField3().setText(selectedHeader.getCustomerName());
-            frameObject.getTextField2().setText(String.valueOf(selectedHeader.getInvoiceDate()));
+            frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(selectedHeader.getInvoiceDate()));
             frameObject.getTextField1().setText(String.valueOf(selectedHeader.getInvoiceNum()));
             frameObject.getTextField4().setText(String.valueOf(selectedHeader.getTotal()));
         } else {

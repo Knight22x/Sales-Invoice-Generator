@@ -1,14 +1,12 @@
 package model;
 
-import view.MainGUI;
-
 import java.util.ArrayList;
 import java.util.Date;
 
 public class InvoiceHeader {
 
-    private final String customerName;
-    private final Date invoiceDate;
+    private String customerName;
+    private Date invoiceDate;
     private int invoiceNum;
 
     private final ArrayList<InvoiceLine> invoiceRecords = new ArrayList<>();
@@ -31,8 +29,16 @@ public class InvoiceHeader {
         return customerName;
     }
 
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public Date getInvoiceDate() {
         return invoiceDate;
+    }
+
+    public void setInvoiceDate(Date invoiceDate) {
+        this.invoiceDate = invoiceDate;
     }
 
     public double getTotal() {
