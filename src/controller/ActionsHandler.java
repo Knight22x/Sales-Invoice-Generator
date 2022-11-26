@@ -174,7 +174,7 @@ public class ActionsHandler implements ActionListener {
         int itemCount = Integer.parseInt(invoiceRecordView.getItemCountField().getText());
         double itemPrice = Double.parseDouble(invoiceRecordView.getItemPriceField().getText());
 
-        int selectedInvoice = frameObject.getTable1().getSelectedRow();
+        int selectedInvoice = Math.max(0, frameObject.getTable1().getSelectedRow());
         InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
 
         InvoiceLine record = new InvoiceLine(ItemName, itemPrice, itemCount, invoice);
