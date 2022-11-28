@@ -8,6 +8,7 @@ import view.MainGUI;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.InvalidPathException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -145,8 +146,9 @@ public class ActionsHandler implements ActionListener {
         }
     }
 
-    private void saveFile() {
-        FileOperations.writeFiles(frameObject.getInvoicesTable().getInvoices());
+    private void saveFile(){
+
+            FileOperations.writeFiles(frameObject.getInvoicesTable().getInvoices());
     }
 
     private void okNewInvoice() {
@@ -235,28 +237,39 @@ public class ActionsHandler implements ActionListener {
 
         try {
             Date invoiceDate = Constants.DATE_FORMAT.parse(frameObject.getTextField2().getText());
+
             String customerName = frameObject.getTextField3().getText();
 
             invoice.setCustomerName(customerName);
             invoice.setInvoiceDate(invoiceDate);
 
             frameObject.getInvoicesTable().fireTableRowsUpdated(selectedInvoice, selectedInvoice);
+            FileOperations.writeFiles(frameObject.getInvoicesTable().getInvoices());
 
             JOptionPane.showMessageDialog(null, "Saved changes.");
         } catch (ParseException e) {
             Logger.getLogger(ActionsHandler.class.getName()).log(Level.WARNING, "Entered date format was incorrect. Please fix the date format to dd-MM-yyyy first.", e);
             JOptionPane.showMessageDialog(null, "Entered date format was incorrect. Please fix the date format to dd-MM-yyyy first.");
         }
+        catch (InvalidPathException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Invalid File Path.", e);
+            JOptionPane.showMessageDialog(null, "Invalid File Path.");
+        }
     }
 
     private void cancelInvoiceEdit() {
         int selectedInvoice = frameObject.getTable1().getSelectedRow();
 
-        if (selectedInvoice == -1) return;
+        if (selectedInvoice == -1)
+        {
+            JOptionPane.showMessageDialog(null, "Please select an invoice first.");
+            return;
+        }
 
         InvoiceHeader invoice = frameObject.getInvoicesTable().getInvoices().get(selectedInvoice);
 
         frameObject.getTextField2().setText(Constants.DATE_FORMAT.format(invoice.getInvoiceDate()));
         frameObject.getTextField3().setText(invoice.getCustomerName());
     }
+
 }

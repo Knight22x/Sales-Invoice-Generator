@@ -4,121 +4,107 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp label1:::p::p, space :::x}, seq t {par l {seq l {comp button3:::p::p, space :::x, comp button4:::p::p}, comp scrollPane1::::0:x}, space :::p, par l:::p {comp label2:::p:85:p, seq l {par t:::p {comp label3::l::103:x, comp label4::l::103:x, comp label5::l::103:x, comp label6::l::103:x}, space u:::p, par l {comp textField1:::::x, comp textField2:::::x, comp textField3::l:::x, comp textField4::l:::x, seq {comp label7:::p:356:p, space :0:0:x}}}, seq {comp button1:::p::p, space s:::p, comp button6:::p::p, space :p:51:p, comp button7:::p::p, space :p:165:p, par l {comp scrollPane2::l:::x, comp button2:::p::p}}}, space :p:42:p}}}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp label7:::p::p, space u:::p, comp label1:::p::p, space :p:9:p, par l {seq l {comp scrollPane1::::453:x, space :::p, par l {par b {comp button1::b:p::p, comp button4::b:p::p, comp button3::b:p::p, comp button6::b:p::p, comp button7::b:p::p}, comp button2::l:p::p}, space ::16:x}, seq l {par b {comp label3::b:p::p, comp textField1::b:p::p}, space s:::p, par b {comp label4::b:p::p, comp textField2::b:p::p}, space s:::p, par b {comp label5::b:p:16:p, comp textField3::b:p::p}, space s:::p, par b {comp label6::b:p::p, comp textField4::b:p::p}, space :p:7:p, comp label2:::p::p, space :::p, comp scrollPane2::::250:x, space ::52:x}}}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp label1::l:p::p, seq l {comp scrollPane1:::p::p, par l {seq {space :p:18:p, par t:::p {seq {par l {comp label9:::p::p, comp label10:::p::p, comp label11::l:p::p}, space s:::p, par l {comp textField4:::p:148:p, comp textField3::t:p:148:p}, space :::x}, seq {par l {comp label3:::p::p, comp label8:::p:76:p}, space :p:20:p, par l:::p {comp textField2::::143:x, comp textField1::::143:x}, space s:::p, par l:::p {comp button6::::0:x, comp button5:::::x}, space :p:1:p}}}, seq l {space :::p, comp scrollPane2:::p:632:p}}}}}, seq l {space :p:107:p, comp button1:::p::p, space s:::p, comp button2:::p::p, space :p:258:p, comp button3:::p::p, space s:::p, comp button4:::p::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp label1:::p::p, space :::p, par t {seq {par t {seq {par b {comp label3::b:p:30:p, comp textField1::b:p::p}, space s:::p, par l {comp label8:::p:30:p, par b {comp button5::b:p::p, comp textField2::b:p:30:p}}, space s:::p, par l {comp label9:::p:30:p, comp textField3::l:p::p, comp button6::l:p::p}, space s:::p, par b {comp label10::b:p:30:p, comp textField4::b:p::p}, space s:::p, comp label11:::p::p, space :p:4:p, comp scrollPane2:::p:326:p}, comp scrollPane1:::p:538:p}, space s:::p, par l {comp button1:::p::p, par b:l {comp button4::b:p::p, comp button3::b:p::p}}}, comp button2:::p::p}, space ::23:x}}"
 		} ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane1"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table1"
-					auxiliary() {
-						"JavaCodeGenerator.variableGetter": true
-					}
-				} )
-			} )
-			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-				name: "scrollPane2"
-				add( new FormComponent( "javax.swing.JTable" ) {
-					name: "table2"
-					auxiliary() {
-						"JavaCodeGenerator.variableGetter": true
-					}
-				} )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
-				"text": "Create Record"
-				"foreground": new java.awt.Color( 255, 255, 0, 255 )
-				"background": new java.awt.Color( 0, 0, 0, 255 )
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button2"
-				"text": "Delete Record"
-				"foreground": new java.awt.Color( 255, 255, 0, 255 )
-				"background": new java.awt.Color( 0, 0, 0, 255 )
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button3"
-				"text": "Create Invoice"
-				"background": new java.awt.Color( 0, 0, 0, 255 )
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-				"foreground": new java.awt.Color( 255, 255, 0, 255 )
-			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button4"
-				"text": "Delete Invoice"
-				"background": new java.awt.Color( 0, 0, 0, 255 )
-				"foreground": new java.awt.Color( 255, 255, 0, 255 )
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Invoices Table"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 				"foreground": new java.awt.Color( 0, 0, 255, 255 )
 			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"text": "Invoice Details"
-				"font": new java.awt.Font( "Segoe UI", 1, 12 )
-				"foreground": new java.awt.Color( 0, 0, 255, 255 )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
 				"text": "Invoice Number"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label4"
-				"text": "Invoice Date"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label5"
-				"text": "Customer Name"
-			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label6"
-				"text": "Invoice Total"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField1"
-				auxiliary() {
-					"JavaCodeGenerator.variableGetter": true
-				}
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField2"
-				auxiliary() {
-					"JavaCodeGenerator.variableGetter": true
-				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Invoice Date"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "Customer Name"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField3"
 			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "Invoice Total"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "textField4"
 			} )
-			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label7"
-				"text": "Sales Invoice Generator developed by Abdelrahman Hesham"
-				"foreground": new java.awt.Color( 255, 102, 0, 255 )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table2"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Create Invoice"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Delete Invoice"
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Create Record"
+				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button4"
+				"text": "Delete Record"
+				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button5"
+				"text": "Save"
+				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"background": new java.awt.Color( 0, 0, 0, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "button6"
-				"text": "Save"
-				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
+				"text": "Cancel"
 				"foreground": new java.awt.Color( 255, 255, 0, 255 )
+				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
 				"background": new java.awt.Color( 0, 0, 0, 255 )
 			} )
-			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button7"
-				"text": "Cancel"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "Invoices Details"
 				"font": new com.jformdesigner.model.SwingDerivedFont( null, 1, 0, false )
-				"foreground": new java.awt.Color( 255, 255, 0, 255 )
-				"background": new java.awt.Color( 0, 0, 0, 255 )
+				"foreground": new java.awt.Color( 0, 0, 255, 255 )
 			} )
 			menuBar: new FormContainer( "javax.swing.JMenuBar", new FormLayoutManager( class javax.swing.JMenuBar ) ) {
 				name: "menuBar1"
@@ -127,20 +113,17 @@ new FormModel {
 					"text": "File"
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem1"
-						"text": "Load File"
-					} )
-					add( new FormComponent( "javax.swing.JPopupMenu$Separator" ) {
-						name: "separator1"
+						"text": "Save File"
 					} )
 					add( new FormComponent( "javax.swing.JMenuItem" ) {
 						name: "menuItem2"
-						"text": "Save File"
+						"text": "Load File"
 					} )
 				} )
 			}
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 800, 625 )
+			"size": new java.awt.Dimension( 915, 690 )
 		} )
 	}
 }

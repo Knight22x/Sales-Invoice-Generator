@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -55,19 +56,22 @@ public final class FileOperations {
                 invoice.getInvoiceRecords().add(invoiceRecord);
             }
         } catch (IOException e) {
-            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Couldn't read file", e);
-            JOptionPane.showMessageDialog(null, "Couldn't read file");
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "File(s) not found", e);
+            JOptionPane.showMessageDialog(null, "File(s) not found");
         } catch (ParseException e) {
-            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Failed to parse file(s)", e);
-            JOptionPane.showMessageDialog(null, "Failed to parse file(s)");
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Invalid Date Format", e);
+            JOptionPane.showMessageDialog(null, "Invalid Date Format");
+        } catch (NumberFormatException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Invalid File Format", e);
+            JOptionPane.showMessageDialog(null, "Invalid File Format");
         }
+
 
         return invoices;
     }
 
     public static void writeFiles(ArrayList<InvoiceHeader> invoices) {
-        JFileChooser chooser = new JFileChooser();
-
+        //JFileChooser chooser = new JFileChooser();
         StringBuilder invoicesSb = new StringBuilder();
         StringBuilder recordsSb = new StringBuilder();
         for (InvoiceHeader invoice : invoices) {
@@ -80,35 +84,73 @@ public final class FileOperations {
         invoicesSb = new StringBuilder(invoicesSb.substring(0, invoicesSb.length() - 1));
         recordsSb = new StringBuilder(recordsSb.substring(0, recordsSb.length() - 1));
 
-        JOptionPane.showMessageDialog(null, "Saving the invoices file; please save the file" +
-                " with .csv extension.");
+        JOptionPane.showMessageDialog(null, "Saving the invoices file");
+        File invoiceFile = new File(Paths.get(System.getProperty("user.dir") + Constants.INVOICE_FILE).toUri());
+        try {
+            FileWriter writer = new FileWriter(invoiceFile);
+            writer.write(invoicesSb.toString());
+            writer.close();
+        } catch (IOException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Invalid File Format.", e);
+            JOptionPane.showMessageDialog(null, "Invalid File Format.");
+        } catch (InvalidPathException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Invalid File Path.", e);
+            JOptionPane.showMessageDialog(null, "Invalid File Path.");
+        }
 
-        int saveResult = chooser.showSaveDialog(null);
-        if (saveResult == JFileChooser.APPROVE_OPTION) {
-            File invoiceFile = chooser.getSelectedFile();
-            try {
-                FileWriter writer = new FileWriter(invoiceFile);
+//        int saveResult = chooser.showSaveDialog(null);
+//        if (saveResult == JFileChooser.APPROVE_OPTION) {
+        // File invoiceFile = chooser.getSelectedFile();
+//
+        // ******************* Wrong file format exception *************** //
+        /*
+
+        File invoiceFile = new File(Paths.get(Constants.INVALID_INVOICE_FILE).toUri());
+        String extension = null;
+        String fileName = invoiceFile.toString();
+        int index = fileName.lastIndexOf('.');
+        if (index > 0) {
+            extension = fileName.substring(index + 1);
+        }
+        assert extension != null;
+
+        try {
+            if (extension.endsWith(".csv")) {
+                FileWriter writer = new FileWriter(invoiceFile, true);
                 writer.write(invoicesSb.toString());
                 writer.close();
-            } catch (IOException e) {
-                Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Couldn't save invoices file", e);
-                JOptionPane.showMessageDialog(null, "Couldn't save invoices file");
             }
+            else {
+                throw new IOException();
+            }
+        } catch (
+                FileNotFoundException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "File/Folder path not found", e);
+            JOptionPane.showMessageDialog(null, "File/Folder path not found");
+        } catch (IOException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Can only write and save to a file " +
+                    "of .csv type", e);
+            JOptionPane.showMessageDialog(null,"Can only write and save to a file " +
+                    "of .csv type" );
         }
+        */
+        // File / folder path case
+        //File invoiceFile = new File(Paths.get(Constants.ABSENT_INVOICE_FILE).toUri());  //for file/folder path not found exception
+        JOptionPane.showMessageDialog(null, "Saving the invoice records file");
 
-        JOptionPane.showMessageDialog(null, "Saving the invoice records file; please save the file" +
-                " with .csv extension.");
+//        saveResult = chooser.showSaveDialog(null);
+//        if (saveResult == JFileChooser.APPROVE_OPTION) {
 
-        saveResult = chooser.showSaveDialog(null);
-        if (saveResult == JFileChooser.APPROVE_OPTION) {
-            File recordsFile = chooser.getSelectedFile();
-            try {
-                FileWriter writer = new FileWriter(recordsFile);
-                writer.write(recordsSb.toString());
-                writer.close();
-            } catch (IOException e) {
-                Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Couldn't save invoice records file", e);
-            }
+        File recordsFile = new File(Paths.get(System.getProperty("user.dir") + Constants.INVOICE_RECORDS_FILE).toUri());
+        try {
+            FileWriter writer = new FileWriter(recordsFile);
+            writer.write(recordsSb.toString());
+            writer.close();
+        } catch (
+                IOException e) {
+            Logger.getLogger(ActionsHandler.class.getName()).log(Level.SEVERE, "Couldn't save invoice records file", e);
         }
     }
+
+
 }
