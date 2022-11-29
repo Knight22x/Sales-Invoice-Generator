@@ -147,8 +147,7 @@ public class ActionsHandler implements ActionListener {
     }
 
     private void saveFile(){
-
-            FileOperations.writeFiles(frameObject.getInvoicesTable().getInvoices());
+        FileOperations.writeFiles(frameObject.getInvoicesTable().getInvoices());
     }
 
     private void okNewInvoice() {
