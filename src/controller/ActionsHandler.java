@@ -54,7 +54,7 @@ public class ActionsHandler implements ActionListener {
     }
 
     private void createInvoice() {
-        JOptionPane.showMessageDialog(null, "Please enter the name and date; if the name is " + "entered only then the date will be auto entered with the date of today.");
+        JOptionPane.showMessageDialog(null,"Please enter the name and date; if the name is " + "entered only then the date will be auto entered with the date of today.");
         invoiceView = new InvoiceView(this);
         invoiceView.setVisible(true);
     }
